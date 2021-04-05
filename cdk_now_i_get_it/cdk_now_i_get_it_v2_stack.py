@@ -40,7 +40,7 @@ class CdkNowIGetItStack(cdk.Stack):
                                  security_group_name="jumpbox-mgmt-traffic")
 
         # Add ingress rules to the Security Group for the jump host
-        # 10.255.0.10 to TCP/22 and TCP/3389.
+        # TCP/22 and TCP/3389.
         for port in mgmt_ports:
             self._sg.add_ingress_rule(peer=Peer.ipv4(jump_host),
                                       connection=Port(protocol=Protocol.TCP,
