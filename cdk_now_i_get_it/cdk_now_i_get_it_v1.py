@@ -8,9 +8,9 @@ from aws_cdk.aws_ec2 import (
 )
 
 
-class CdkNowIGetItStack(cdk.Stack):
+class CdkNowIGetIt(cdk.Construct):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: cdk.Stack, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
         # Create the VPC resource.

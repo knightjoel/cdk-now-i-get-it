@@ -3,15 +3,48 @@ import os
 
 from aws_cdk import core as cdk
 
-from cdk_now_i_get_it.cdk_now_i_get_it_v1_stack import (
-    CdkNowIGetItStack as CdkNowIGetItStack_v1
+from cdk_now_i_get_it.cdk_now_i_get_it_v1 import (
+    CdkNowIGetIt as CdkNowIGetIt_v1
 )
-from cdk_now_i_get_it.cdk_now_i_get_it_v2_stack import (
-    CdkNowIGetItStack as CdkNowIGetItStack_v2
+from cdk_now_i_get_it.cdk_now_i_get_it_v2 import (
+    CdkNowIGetIt as CdkNowIGetIt_v2
 )
-from cdk_now_i_get_it.cdk_now_i_get_it_v3_stack import (
-    CdkNowIGetItStack as CdkNowIGetItStack_v3
+from cdk_now_i_get_it.cdk_now_i_get_it_v3 import (
+    CdkNowIGetIt as CdkNowIGetIt_v3
 )
+
+
+class MyStackv1(cdk.Stack):
+
+    def __init__(self, scope: cdk.App, id: str, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        self._network = CdkNowIGetIt_v1(self, "CdkNowIGetItv1")
+
+
+class MyStackv2(cdk.Stack):
+
+    def __init__(self, scope: cdk.App, id: str, vpc_cidr: str,
+                 jump_host: str, ports: list, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        self._network = CdkNowIGetIt_v2(self, "CdkNowIGetItv2",
+                                        vpc_cidr,
+                                        jump_host,
+                                        ports)
+
+
+class MyStackv3(cdk.Stack):
+
+    def __init__(self, scope: cdk.App, id: str, vpc_cidr: str,
+                 jump_host: str, ports: list, subnet_len: int, **kwargs):
+        super().__init__(scope, id, **kwargs)
+
+        self._network = CdkNowIGetIt_v3(self, "CdkNowIGetItv3",
+                                        vpc_cidr,
+                                        jump_host,
+                                        ports,
+                                        subnet_len)
 
 
 def get_params_from_database():
@@ -31,19 +64,20 @@ def get_params_from_database():
 
 
 app = cdk.App()
-stack_v1 = CdkNowIGetItStack_v1(app, "CdkNowIGetItStackv1")
+
+stack_v1 = MyStackv1(app, "MyStackv1")
 
 params = get_params_from_database()
-stack_v2 = CdkNowIGetItStack_v2(app, "CdkNowIGetItStackv2",
-                                params["vpc_cidr"],
-                                params["jump_host"],
-                                params["ports"])
+stack_v2 = MyStackv2(app, "MyStackv2",
+                     params["vpc_cidr"],
+                     params["jump_host"],
+                     params["ports"])
 
 subnet_len = 24
-stack_v3 = CdkNowIGetItStack_v3(app, "CdkNowIGetItStackv3",
-                                params["vpc_cidr"],
-                                params["jump_host"],
-                                params["ports"],
-                                subnet_len)
+stack_v3 = MyStackv3(app, "MyStackv3",
+                     params["vpc_cidr"],
+                     params["jump_host"],
+                     params["ports"],
+                     subnet_len)
 
 app.synth()

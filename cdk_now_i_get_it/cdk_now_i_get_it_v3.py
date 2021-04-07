@@ -10,9 +10,9 @@ from aws_cdk.aws_ec2 import (
 )
 
 
-class CdkNowIGetItStack(cdk.Stack):
+class CdkNowIGetIt(cdk.Construct):
 
-    def __init__(self, scope: cdk.Construct, construct_id: str,
+    def __init__(self, scope: cdk.Stack, construct_id: str,
                  vpc_cidr: str, jump_host: str, mgmt_ports: list,
                  subnet_len: int, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
