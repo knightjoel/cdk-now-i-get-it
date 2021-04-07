@@ -38,7 +38,7 @@ class CdkNowIGetIt(cdk.Construct):
 
         # Security Group only created if the jump host parameter was
         # specified.
-        if len(jump_host) > 0:
+        if jump_host is not None and len(jump_host) > 0:
             self.create_sg(jump_host, mgmt_ports)
 
     def create_sg(self, jump_host, mgmt_ports):
