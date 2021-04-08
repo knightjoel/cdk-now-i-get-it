@@ -14,6 +14,8 @@ The primary bits of interest which align to the blog are:
 - Proven defaults:
   [cdk_now_i_get_it_v3_stack.py](cdk_now_i_get_it/cdk_now_i_get_it_v3_stack.py)
 - The app which consumes the above constructs: [app.py](app.py)
+- The CloudFormation templates that CDK synthesizes from the above app are in
+  the [cdk.out](cdk.out) directory.
 
 The original CDK README is below in case you need a little help getting going.
 
