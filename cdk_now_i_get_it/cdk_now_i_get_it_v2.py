@@ -7,7 +7,6 @@ from aws_cdk.aws_ec2 import (
     Vpc
 )
 
-
 class CdkNowIGetIt(cdk.Construct):
 
     def __init__(self, scope: cdk.Stack, construct_id: str,
@@ -18,12 +17,12 @@ class CdkNowIGetIt(cdk.Construct):
         # args:
         # - vpc_cidr (str): The CIDR range for the VPC.
         # - jump_host (str): An optional IP address for the jump host. If this
-        #                    is not specified, te Security Group will not be
+        #                    is not specified, the Security Group will not be
         #                    created.
         # - mgmt_ports (list): A list of TCP ports which the jump host is
         #                      allowed to connect to.
 
-        # Create the VPC resource.
+        # Create the VPC resource with the given CIDR range.
         self._vpc = Vpc(self, "MyVPC", cidr=vpc_cidr)
 
         # Security Group only created if the jump host parameter was
@@ -39,8 +38,7 @@ class CdkNowIGetIt(cdk.Construct):
                                  description="Management traffic from jump boxes",
                                  security_group_name="jumpbox-mgmt-traffic")
 
-        # Add ingress rules to the Security Group for the jump host
-        # TCP/22 and TCP/3389.
+        # Add ingress rules to the Security Group
         for port in mgmt_ports:
             self._sg.add_ingress_rule(peer=Peer.ipv4(jump_host),
                                       connection=Port(protocol=Protocol.TCP,
