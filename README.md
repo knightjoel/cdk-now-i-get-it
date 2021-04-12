@@ -1,19 +1,19 @@
+# AWS Cloud Development Kit: Now I Get It
 
-# AWS CDK: Now I Get It
-
-This [AWS Cloud Development Kit (CDK)(https://aws.amazon.com/cdk/) app is
-the companion code for the blog post
-[AWS CDK: Now I Get It](https://www.packetmischief.ca).
+This [AWS Cloud Development Kit (CDK)(https://aws.amazon.com/cdk/) code is
+a companion for the blog post
+[AWS Cloud Development Kit: Now I Get It](https://www.packetmischief.ca/2021/04/11/aws-cdk-now-i-get-it/).
 
 The primary bits of interest which align to the blog are:
 
 - Composing and sharing:
-  [cdk_now_i_get_it_v1_stack.py](cdk_now_i_get_it/cdk_now_i_get_it_v1_stack.py)
+  [cdk_now_i_get_it_v1_stack.py](https://github.com/knightjoel/cdk-now-i-get-it/blob/master/cdk_now_i_get_it/cdk_now_i_get_it_v1_stack.py)
 - Native language:
-  [cdk_now_i_get_it_v2_stack.py](cdk_now_i_get_it/cdk_now_i_get_it_v2_stack.py)
+  [cdk_now_i_get_it_v2_stack.py](https://github.com/knightjoel/cdk-now-i-get-it/blob/master/cdk_now_i_get_it/cdk_now_i_get_it_v2_stack.py)
 - Proven defaults:
-  [cdk_now_i_get_it_v3_stack.py](cdk_now_i_get_it/cdk_now_i_get_it_v3_stack.py)
-- The app which consumes the above constructs: [app.py](app.py)
+  [cdk_now_i_get_it_v3_stack.py](https://github.com/knightjoel/cdk-now-i-get-it/blob/master/cdk_now_i_get_it/cdk_now_i_get_it_v3_stack.py)
+- The app which consumes the above constructs:
+  [app.py](https://github.com/knightjoel/cdk-now-i-get-it/blob/master/app.py)
 - The CloudFormation templates that CDK synthesizes from the above app are in
   the [cdk.out](cdk.out) directory.
 
